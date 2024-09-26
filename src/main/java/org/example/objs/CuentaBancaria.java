@@ -1,15 +1,12 @@
 package org.example.objs;
 
-import java.awt.*;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-
 public abstract class CuentaBancaria implements Imprimible {
     protected String IBAN;
     protected double saldo;
     protected String tipoCuenta;
     protected Persona titular;
+
+    //Los atributos son protected, mostrando que son "privados", pero sirven para que las clases hija las hereden
 
     public CuentaBancaria(String IBAN, double saldo, String tipoCuenta, Persona titular) {
         this.IBAN = IBAN;
@@ -22,24 +19,12 @@ public abstract class CuentaBancaria implements Imprimible {
         return IBAN;
     }
 
-    public void setIBAN(String IBAN) {
-        this.IBAN = IBAN;
-    }
-
     public double getSaldo() {
         return saldo;
     }
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
-    }
-
-    public String getTipoCuenta() {
-        return tipoCuenta;
-    }
-
-    public void setTipoCuenta(String tipoCuenta) {
-        this.tipoCuenta = tipoCuenta;
     }
 
     public String devolverInfoString(){

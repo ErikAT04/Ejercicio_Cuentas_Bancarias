@@ -1,10 +1,5 @@
 package org.example.objs;
 
-import java.awt.*;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-
 public class Persona implements Imprimible {
     private String nombre;
     private String apellidos;
