@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static Scanner sc = new Scanner(System.in);
-    public static Banco banco = new Banco();
+    public static Scanner sc = new Scanner(System.in); //Es el lector de la consola
+    public static Banco banco = new Banco(); //Un objeto de tipo Banco para operar con las cuentas
 
     //He creado estos dos objetos de forma estática y al principio ya que van a ser utilizados en el resto de los métodos de la clase
 

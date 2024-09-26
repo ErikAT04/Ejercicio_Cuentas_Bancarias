@@ -1,10 +1,10 @@
 package org.example.objs;
 
 public class Validator {
-    public static boolean validarIBAN(String iban) {
+    public static boolean validarIBAN(String iban) { //Método de validación del IBAN
         return iban.matches("ES[0-9]{20}"); //Se encarga de que el iban sea ES seguido de 20 números
     }
-    public static boolean validarDNI(String dni){
+    public static boolean validarDNI(String dni){ //Método de validación del DNI
         if (dni.matches("[0-9]{8}[A-Z]")){ //Se encarga de que el DNI tenga el valor 'NNNNNNNNX', siendo N un número y X una letra
             int numDNI = Integer.parseInt(dni.substring(0, 8)); //Aquí cogemos el número del DNI. Como los strings al igual que los arrays y colecciones, empieza en una posición 0, sabiendo que hay 8 dígitos, cogemos hasta el de la posición 7
             char letraDNI = switch (numDNI%23) { //Fórmula para sacar la letra del dni: DNI/23 y el resto se asigna a un número específico
