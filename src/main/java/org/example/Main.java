@@ -68,7 +68,7 @@ public class Main {
         System.out.println("Necesitamos un nombre de titular: ");
         String nombre = sc.nextLine();
         System.out.println("¿Cuáles son sus apellidos?");
-        String apell = sc.nextLine();
+        String apellidos = sc.nextLine();
         String dni;
         do{
             System.out.println("Escribe el DNI: ");
@@ -82,7 +82,7 @@ public class Main {
         Podría haber hecho que no se saliera hasta que cumpliera la condición, pero llamar dos veces a una clase ajena, una para comprobar un if y otra para comprobar un bucle me parecía excesivo
         Por ende, he hecho un bucle que solo se cierra cuando el string está vacío, cosa que solo ocurre si el dni introducido no es válido.
          */
-        Persona titular = new Persona(nombre, apell, dni);
+        Persona titular = new Persona(nombre, apellidos, dni);
         String iban = "";
         while (!Validator.validarIBAN(iban)) {
             System.out.println("Escriba el número de cuenta (Recuerde que debe ser 'ES' seguido de 20 números):");
@@ -96,20 +96,16 @@ public class Main {
             try {
                 System.out.println("Escribe la cantidad que quieres ingresar para empezar");
                 saldoInicial = Double.parseDouble(sc.nextLine());
-                if (saldoInicial >= 0) {
-                    break;
-                } else {
+                if (saldoInicial < 0) {
                     System.out.println("No puedes introducir un saldo negativo");
                 }
             }catch (NumberFormatException e){
                 System.out.println("Necesitamos que sea un valor numérico. Inténtelo de nuevo.");
+                saldoInicial = 0; //En este caso, para evitar posibles errores o salidas del bucle inesperadas, se iguala el saldo a 0 si se escribe una letra
             }
-        }while (true);
-        /*
-        Este bucle se encarga de conseguir un número real mayor o igual a 0, sin permitir al usuario que se salga del bucle si este introduce un negativo o un valor no numérico.
-        Se podría hacer poniendo en la condición del bucle (saldoInicial < 0), e implicaría controlar el saldo en el catch.
-         */
-        String tipoCuenta = "";
+        }while (saldoInicial < 0); //Este bucle se encarga de conseguir un número real mayor o igual a 0, sin permitir al usuario que se salga del bucle si este introduce un negativo o un valor no numérico.
+
+        String tipoCuenta = ""; //Se inicia el String a modo de cadena vacía
         do{
             try{
                 System.out.println("""
@@ -163,7 +159,6 @@ public class Main {
                             }
                         }while (comisionMantenimiento <= 0);
                         cuenta = new CuentaCorrientePersonal(iban, saldoInicial, tipoCuenta, titular, entidadesPers, comisionMantenimiento); //Crea un objeto de CuentaCorrientePersonal, hija de CuentaCorriente, hija de CuentaBancaria
-
                         break;
                     case 3:
                         tipoCuenta = "Corriente de Empresa";
@@ -290,18 +285,20 @@ public class Main {
         int opt;
         do{
             try {
-                System.out.println("¿Quieres añadir alguna entidad a esta cuenta?\n1: Si\nCualquier otro número: No");
+                System.out.println("¿Quieres añadir alguna entidad a esta cuenta?\n1: Si\n2: No");
                 opt = Integer.parseInt(sc.nextLine());
                 if (opt == 1) {
                     System.out.println("Escribe el nombre de una entidad: ");
                     String entidad = sc.nextLine();
                     entidadesAutorizadas.add(entidad); //Añade la entidad
+                } else if (opt != 2) {
+                    System.out.println("Opción no disponible");
                 }
             }catch (NumberFormatException e) {
                 System.out.println("Elige un número\n"); //El salto de linea es más estético que otra cosa
                 opt = 1;
             }
-        }while (opt == 1);
+        }while (opt != 2);
         return entidadesAutorizadas; //Devuelve el arraylist entero
     }
 }

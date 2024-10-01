@@ -20,14 +20,13 @@ public class Banco {
     }
 
     public String informacionCuenta(String iban){ //Método que recibe el iban y busca una cuenta para dar su información
-        String infoCuenta = null; //Se inicia como una cadena nula por si no encuentra nada.
         for (CuentaBancaria c : cuentas){
             if (c.getIBAN().equals(iban)){
-                infoCuenta = c.devolverInfoString(); //Si se encuentra la cuenta, se actualiza el string y se procede a un break, porque ya no se necesita el bucle
-                break;
+                return c.devolverInfoString(); //Si se encuentra la cuenta, devuelve la cadena de caracteres con la información de la cuenta, terminado así la función
+
             }
         }
-        return infoCuenta; //Devuelve nulo si no ha encontrado ninguna cuenta.
+        return null; //Devuelve nulo si no ha encontrado ninguna cuenta.
     }
     public boolean ingresoCuenta(String iban, double cantidad){ //Método que recibe un iban y una cantidad para realizar un ingreso
         for (CuentaBancaria c : cuentas){

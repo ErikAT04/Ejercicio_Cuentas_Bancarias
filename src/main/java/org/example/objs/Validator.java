@@ -30,7 +30,7 @@ public class Validator {
                 case 19 -> 'L';
                 case 20 -> 'C';
                 case 21 -> 'K';
-                default -> 'E'; //El único caso que no cubría el switch es el de si el resto fuera 22, por lo que declaramos ese caso como el Default
+                default -> 'E'; //El único caso que no cubría el switch es si el resto fuera 22, por lo que declaramos ese caso como el Default
             };
             return letraDNI == dni.charAt(8); //Si la letra del DNI coincide con la de la fórmula, devuelve true. En el caso opuesto, devuelve false
         } else {
